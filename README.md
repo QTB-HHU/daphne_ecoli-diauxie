@@ -6,7 +6,10 @@ implemented in COBRApy.
 
 **The code is made available under the GNU General Public License (see LICENSE) at no warranty** and is under further development at [https://gitlab.com/asuccurro/dfba-ode-framework](https://gitlab.com/asuccurro/dfba-ode-framework). Access to the developer version can be requested by writing to *asuccurro AT gmail DOT com*.
 
-This code corresponds to the version v1.0, used for simulating Escherichia coli sub-population dynamics in the work "Emerging sub-population dynamics uncovered with a community model of Escherichia coli diauxic growth" by Succurro, Segrè, Ebenhöh, 2018.
+This code corresponds to the version v1.0, used for simulating Escherichia coli sub-population dynamics in the work
+["Emerging sub-population dynamics uncovered with a community model of Escherichia coli diauxic growth" by Succurro, Segrè, Ebenhöh, 2018.]()
+
+
 
 
 ## Installation
@@ -20,9 +23,6 @@ apt-get install python-virtualenv
 yum install python-virtualenv
 pip install virtualenv
 ```
-
-## COBRApy requirements
-
 
 ### Solvers
 	
@@ -46,11 +46,11 @@ sudo python setup.py install
 
 In virtualenv then you need to locate Gurobi path (see below)
 	
-### Generate a virtual environment for python2 or python3 like:
+### Generate a virtual environment for python2.7 like:
 
 ```bash
 cd yourprojectfolder
-virtualenv -p /yourlocalpathto/pythonX venv
+virtualenv -p /usr/bin/python2.7 pubvenv
 ```
 
 Then activate virtualenv and install the requirements:
@@ -60,10 +60,19 @@ source pubvenv/bin/activate
 pip install -r req_pubvenv.txt
 ```
 
-You are ready to run! When done, leave the virtualenv like:
+The command to leave the virtualenv is:
 
 ```bash
 deactivate
+```
+
+
+### MOMA file modifications
+
+The file moma.py from COBRApy has to be slightly modify to return a copy of the model:
+
+```bash
+cp filescobra/moma.py pubvenv/lib/python2.7/site-packages/cobra/flux_analysis/
 ```
 
 ### Gurobi installation in virtualenv
@@ -73,7 +82,3 @@ In virtualenv you need to locate Gurobi path (usually is saved in $GUROBI_HOME) 
 ```bash
 pip install $GUROBI_HOME
 ```
-
-### MOMA file modifications
-
-cp filescobra/moma.py pubvenv/lib/python2.7/site-packages/cobra/flux_analysis/
