@@ -13,6 +13,113 @@ This code corresponds to the version v1.0, used for simulating *Escherichia coli
 * [publication]()
 
 
+## Usage
+
+We provide the framework code (under code/python/) and the macros (under macros/succurro_et_al_2018/)
+used to obtain the Figures of the manuscript and the supplemental material.
+The code is made available under the GNU General Public License (see LICENSE) at no warranty.
+Please note that some of the simulations are rather computationally intensive.
+
+### Fig 1
+
+```bash
+source ./fig1_enjalbert2015_fig2a.sh
+```
+
+#### time output
+
+```bash
+/usr/bin/time -v ./fig1_enjalbert2015_fig2a.sh
+```
+
+### Fig 2
+
+```bash
+source ./fig2_enjalbert2015_geneexp.sh
+```
+
+#### time output
+
+```bash
+/usr/bin/time -v ./fig2_enjalbert2015_geneexp.sh
+
+Command being timed: "./fig2_enjalbert2015_geneexp.sh"
+User time (seconds): 17.94
+System time (seconds): 8.84
+Percent of CPU this job got: 155%
+Elapsed (wall clock) time (h:mm:ss or m:ss): 0:17.21
+```
+
+### Fig 3
+
+```bash
+source ./fig3_enjalbert2015_fig2a.sh
+```
+
+#### time output
+
+```bash
+/usr/bin/time -v ./fig3_enjalbert2015_fig2a.sh
+```
+
+
+
+### Fig 4
+
+```bash
+source ./fig4_enjalbert2015_fig6a_fig6c.sh
+```
+#### time output
+
+```bash
+/usr/bin/time -v ./fig4_enjalbert2015_fig6a_fig6c.sh
+
+Command being timed: "./fig4_enjalbert2015_fig6a_fig6c.sh"
+User time (seconds): 65.88
+System time (seconds): 5.64
+Percent of CPU this job got: 107%
+Elapsed (wall clock) time (h:mm:ss or m:ss): 1:06.71
+```
+
+### Fig 5
+
+```bash
+source ./fig5_enjalbert2015_fig4.sh
+```
+
+#### time output
+
+```bash
+/usr/bin/time -v
+ ./fig5_enjalbert2015_fig4.sh
+```
+
+
+### Supplement
+
+```bash
+source ./figs12_lagtimescans.sh
+```
+
+```bash
+source ./figs13_paramscanlag.sh
+```
+
+```bash
+source ./figs1_varma1994_fig7_fig10.sh
+```
+
+```bash
+source ./figs5-s7_odescans.sh
+```
+
+```bash
+source ./figs9-s11_transitionrates.sh
+```
+
+
+				 
+				 
 
 
 
