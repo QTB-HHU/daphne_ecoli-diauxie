@@ -183,7 +183,7 @@ Page size (bytes): 4096
 Exit status: 0
 ```
 
-### Fig 5
+### Fig 5, Fig S13, Fig S16
 
 Simulates the switch experiments. First runs mother cultures in M9G (--runglucose) and M9GA (--runmixedacetate) conditions. Then runs daughter cultures and computes lag time
 using a simplified ODE model and sampling the starting population ratio from the mother cultures.
@@ -223,26 +223,35 @@ Exit status: 0
 
 ### Supplement
 
-```bash
-source ./figs12_lagtimescans.sh
-```
-
-```bash
-source ./figs13_paramscanlag.sh
-```
+#### Fig S1, S2, S3
 
 ```bash
 source ./figs1_varma1994_fig7_fig10.sh
 ```
 
-```bash
-source ./figs5-s7_odescans.sh
-```
+#### Fig S7, S8, S9
 
 ```bash
-source ./figs9-s11_transitionrates.sh
+source ./figs7-s9_odescans.sh
 ```
 
+#### Fig S10, S11, S12
+
+```bash
+source ./figs10-s12_transitionrates.sh
+```
+
+#### Fig S14
+
+```bash
+source ./figs14_lagtimescans.sh
+```
+
+#### Fig S15
+
+```bash
+source ./figs15_paramscanlag.sh
+```
 
 				 
 				 
