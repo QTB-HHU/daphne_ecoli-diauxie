@@ -18,9 +18,12 @@ This code corresponds to the version v1.0, used for simulating *Escherichia coli
 We provide the framework code (under code/python/) and the macros (under macros/succurro_et_al_2018/)
 used to obtain the Figures of the manuscript and the supplemental material.
 The code is made available under the GNU General Public License (see LICENSE) at no warranty.
-Please note that some of the simulations are rather computationally intensive.
+
 
 ### Fig 1
+
+Simulates single *E. coli* model (--runsingle --runecgl) shifting from glucose to acetate metabolism using either pFBA (default) or MOMA (-M) to solve the FBA problem.
+The experimental condition is batch growth on 15 mM glucose (--runglucose).
 
 ```bash
 source ./fig1_enjalbert2015_fig2a.sh
@@ -30,9 +33,34 @@ source ./fig1_enjalbert2015_fig2a.sh
 
 ```bash
 /usr/bin/time -v ./fig1_enjalbert2015_fig2a.sh
+
+User time (seconds): 964.89
+System time (seconds): 15.70
+Percent of CPU this job got: 98%
+Elapsed (wall clock) time (h:mm:ss or m:ss): 16:36.93
+Average shared text size (kbytes): 0
+Average unshared data size (kbytes): 0
+Average stack size (kbytes): 0
+Average total size (kbytes): 0
+Maximum resident set size (kbytes): 1603088
+Average resident set size (kbytes): 0
+Major (requiring I/O) page faults: 0
+Minor (reclaiming a frame) page faults: 8262327
+Voluntary context switches: 12100
+Involuntary context switches: 2094534
+Swaps: 0
+File system inputs: 0
+File system outputs: 484304
+Socket messages sent: 0
+Socket messages received: 0
+Signals delivered: 0
+Page size (bytes): 4096
+Exit status: 0
 ```
 
 ### Fig 2
+
+This script uses the outputs of the previous simulation. Simulates exponential growth on glucose or acetate and obtains the flux differences as proxy for gene expression.
 
 ```bash
 source ./fig2_enjalbert2015_geneexp.sh
@@ -48,9 +76,29 @@ User time (seconds): 17.94
 System time (seconds): 8.84
 Percent of CPU this job got: 155%
 Elapsed (wall clock) time (h:mm:ss or m:ss): 0:17.21
+Average shared text size (kbytes): 0
+Average unshared data size (kbytes): 0
+Average stack size (kbytes): 0
+Average total size (kbytes): 0
+Maximum resident set size (kbytes): 251816
+Average resident set size (kbytes): 0
+Major (requiring I/O) page faults: 0
+Minor (reclaiming a frame) page faults: 455864
+Voluntary context switches: 1786
+Involuntary context switches: 1292846
+Swaps: 0
+File system inputs: 0
+File system outputs: 2472
+Socket messages sent: 0
+Socket messages received: 0
+Signals delivered: 0
+Page size (bytes): 4096
+Exit status: 0
 ```
 
 ### Fig 3
+
+Simulates batch growth of two *E. coli* populations (--runconsortium) on 15 mM glucose (--runglucose), starting with 100% glucose consumers (--ratioecgl "1.0"). One simulation does not allow population shift, the other introduces noise-level population shift (--phitransition --psitransition --phioffset 0.04 --psioffset 0.04).
 
 ```bash
 source ./fig3_enjalbert2015_fig2a.sh
@@ -60,11 +108,47 @@ source ./fig3_enjalbert2015_fig2a.sh
 
 ```bash
 /usr/bin/time -v ./fig3_enjalbert2015_fig2a.sh
+
+User time (seconds): 76.10
+System time (seconds): 9.32
+Percent of CPU this job got: 111%
+Elapsed (wall clock) time (h:mm:ss or m:ss): 1:16.36
+Average shared text size (kbytes): 0
+Average unshared data size (kbytes): 0
+Average stack size (kbytes): 0
+Average total size (kbytes): 0
+Maximum resident set size (kbytes): 239676
+Average resident set size (kbytes): 0
+Major (requiring I/O) page faults: 0
+Minor (reclaiming a frame) page faults: 809509
+Voluntary context switches: 2397
+Involuntary context switches: 2146733
+Swaps: 0
+File system inputs: 96
+File system outputs: 63432
+Socket messages sent: 0
+Socket messages received: 0
+Signals delivered: 0
+Page size (bytes): 4096
+Exit status: 0
 ```
 
 
 
 ### Fig 4
+
+Simulates batch growth of two *E. coli* populations (--runconsortium) on 15 mM glucose and 4 mM acetate (--runfedlowacetate) or 15 mM glucose and 32 mM acetate (--runfedhighacetate),
+starting with 100% (--ratioecgl "1.0") or 75% (--ratioecgl "0.75") glucose consumers.
+Transition from one population to the other is modeled with Hill kinetics:
+```bash
+psio=0.04
+phio=0.04
+kpsi=30.0
+kphi=5.0
+vpsi=0.2
+vphi=0.2
+-e '0.9' --phitransition --psitransition --kmtransphi "${kphi}" --kmtranspsi "${kpsi}" --vmaxpsi "${vpsi}" --vmaxphi "${vphi}" --phioffset "${phio}" --psioffset "${psio}"
+```
 
 ```bash
 source ./fig4_enjalbert2015_fig6a_fig6c.sh
@@ -79,9 +163,30 @@ User time (seconds): 65.88
 System time (seconds): 5.64
 Percent of CPU this job got: 107%
 Elapsed (wall clock) time (h:mm:ss or m:ss): 1:06.71
+Average shared text size (kbytes): 0
+Average unshared data size (kbytes): 0
+Average stack size (kbytes): 0
+Average total size (kbytes): 0
+Maximum resident set size (kbytes): 214688
+Average resident set size (kbytes): 0
+Major (requiring I/O) page faults: 0
+Minor (reclaiming a frame) page faults: 612717
+Voluntary context switches: 1283
+Involuntary context switches: 1021841
+Swaps: 0
+File system inputs: 0
+File system outputs: 59928
+Socket messages sent: 0
+Socket messages received: 0
+Signals delivered: 0
+Page size (bytes): 4096
+Exit status: 0
 ```
 
 ### Fig 5
+
+Simulates the switch experiments. First runs mother cultures in M9G (--runglucose) and M9GA (--runmixedacetate) conditions. Then runs daughter cultures and computes lag time
+using a simplified ODE model and sampling the starting population ratio from the mother cultures.
 
 ```bash
 source ./fig5_enjalbert2015_fig4.sh
@@ -90,10 +195,31 @@ source ./fig5_enjalbert2015_fig4.sh
 #### time output
 
 ```bash
-/usr/bin/time -v
- ./fig5_enjalbert2015_fig4.sh
-```
+/usr/bin/time -v ./fig5_enjalbert2015_fig4.sh
 
+User time (seconds): 165.74
+System time (seconds): 66.93
+Percent of CPU this job got: 150%
+Elapsed (wall clock) time (h:mm:ss or m:ss): 2:35.03
+Average shared text size (kbytes): 0
+Average unshared data size (kbytes): 0
+Average stack size (kbytes): 0
+Average total size (kbytes): 0
+Maximum resident set size (kbytes): 616420
+Average resident set size (kbytes): 0
+Major (requiring I/O) page faults: 0
+Minor (reclaiming a frame) page faults: 2520492
+Voluntary context switches: 14582
+Involuntary context switches: 4792230
+Swaps: 0
+File system inputs: 0
+File system outputs: 80528
+Socket messages sent: 0
+Socket messages received: 0
+Signals delivered: 0
+Page size (bytes): 4096
+Exit status: 0
+```
 
 ### Supplement
 
