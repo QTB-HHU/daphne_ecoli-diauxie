@@ -58,8 +58,8 @@ def main():
     verbose = args.verbose
 
     if args.debug:
-        xG  = 100*np.load('/home/succurro/repositories/gitlab/dfba-ode-framework/outputs/fig6_enjalbert2015_fig4/xGl_M9G.npy')
-        xGA = 100*np.load('/home/succurro/repositories/gitlab/dfba-ode-framework/outputs/fig6_enjalbert2015_fig4/xGl_M9GA.npy')
+        xG  = 100*np.load('/home/succurro/repositories/gitlab/dfba-ode-framework/outputs/fig5_enjalbert2015_fig4/xGl_M9G.npy')
+        xGA = 100*np.load('/home/succurro/repositories/gitlab/dfba-ode-framework/outputs/fig5_enjalbert2015_fig4/xGl_M9GA.npy')
         sG = 'M9G '
         sA = 'M9GA '
         for i in range(len(xG)):
