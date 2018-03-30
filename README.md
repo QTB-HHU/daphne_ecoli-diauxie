@@ -9,7 +9,7 @@ implemented in COBRApy.
 This code corresponds to the version v1.0, used for simulating *Escherichia coli* sub-population dynamics in the work
 "Emerging sub-population dynamics uncovered with a community model of Escherichia coli diauxic growth" by Succurro, Segrè, Ebenhöh, 2018.
 
-* [bioRXiv preprint]()
+* [bioRXiv preprint](https://www.biorxiv.org/content/early/2018/03/29/291492)
 * [publication]()
 
 
