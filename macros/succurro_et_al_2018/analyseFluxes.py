@@ -48,7 +48,7 @@ def findGlExhTime(m0):
     #    print('ACHTUNG!! ',i0,i1)
     strpr = 'At simulation step %d (time %.3f) Glucose is %.3f mmol; glucose exchange is %.3f; acetate exchange is %.3f ' % (i0, m0.T[i0], m0.dmetabolites['ex_glucose'].quantity[i0], m0.dreactions['glucose_exchange'].flux[i0], m0.dreactions['acetate_exchange'].flux[i0])
     print(strpr)
-    return m0.T[i0]
+    return i0
 # http://bigg.ucsd.edu/models/e_coli_core
 # ecoli = '../../ecoli/bigg/e_coli_core.xml'
 # iJO1366 Escherichia coli
@@ -96,7 +96,19 @@ def multiSimulationAnalyses(args, infiles):
         dfs.append(b)
         fnames.append(c)
         if args.compareGE:
-            tGE.append(findGlExhTime(a))
+            iGE = findGlExhTime(a)
+            tGE.append(a.T[iGE])
+            if args.compareGE:
+                tArr = np.array(a.T)
+                iPreGE = (np.abs(tArr-(tGE[-1] - 1.9))).argmin()
+                iPostGE =  (np.abs(tArr-(tGE[-1] + float(args.tskip)))).argmin()
+                with open('%s/sol_%s_GE.json' % (args.pathout, d), 'w') as f:
+                    json.dump(a.FBAsolutions[iGE].to_dict(), f)
+                with open('%s/sol_%s_%dmin_before_GE.json' % (args.pathout, d, 1.9*60), 'w') as f:
+                    json.dump(a.FBAsolutions[iPreGE].to_dict(), f)
+                with open('%s/sol_%s_%dmin_after_GE.json' % (args.pathout, d, float(args.tskip)*60), 'w') as f:
+                    json.dump(a.FBAsolutions[iPostGE].to_dict(), f)
+
             #print('GE time for ', f, ':', tGE[-1])
             #tiGE.append((np.abs(np.array(a.T)-tGE[-1])).argmin())
     tM = max(np.array(maxt))
