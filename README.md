@@ -12,13 +12,90 @@ This code corresponds to the version v1.0, used for simulating *Escherichia coli
 * [bioRXiv preprint](https://www.biorxiv.org/content/early/2018/03/29/291492)
 * [publication]()
 
-
 ## Usage
 
-We provide the framework code (under code/python/) and the macros (under macros/succurro_et_al_2018/)
-used to obtain the Figures of the manuscript and the supplemental material.
+Here I provide the framework code (under code/python/) and the macros (under macros/succurro_et_al_2018/)
+used to obtain the Figures of the manuscript referenced above.
 The code is made available under the GNU General Public License (see LICENSE) at no warranty.
 
+Please refer to the Jupyter notebook for interactive examples to learn how to use the framework for your own analysis. A software
+metapaper is in preparation.
+
+## Installation
+
+This code requires some external open-source packages.
+
+We use virtual environment, if you don't have it please install like one of:
+
+```bash
+apt-get install python-virtualenv
+yum install python-virtualenv
+pip install virtualenv
+```
+
+### Solvers
+	
+Be sure to have LP solvers (default is glpk/cglpk) installed **before** pip installing cobra (you can always pip uninstall/pip install again)
+
+In Ubuntu distributions this means e.g.:
+
+```bash
+sudo apt-get install glpk-utils
+```
+
+To install Gurobi solver (not needed) please refer to:
+	
+http://www.gurobi.com/documentation/6.5/quickstart_linux/software_installation_guid.html#section:Installation
+	
+Gurobi is installed globally by running
+
+```bash
+sudo python setup.py install
+```
+
+In virtualenv then you need to locate Gurobi path (see below)
+	
+### Generate a virtual environment for python2.7 like:
+
+```bash
+cd yourprojectfolder
+virtualenv -p /usr/bin/python2.7 pubvenv
+```
+
+Then activate virtualenv and install the requirements:
+
+```bash
+source pubvenv/bin/activate
+pip install -r req_pubvenv.txt
+```
+
+The command to leave the virtualenv is:
+
+```bash
+deactivate
+```
+
+
+### MOMA file modifications
+
+The file moma.py from COBRApy has to be slightly modify to return a copy of the model:
+
+```bash
+cp filescobra/moma.py pubvenv/lib/python2.7/site-packages/cobra/flux_analysis/
+```
+
+### Gurobi installation in virtualenv
+
+In virtualenv you need to locate Gurobi path (usually is saved in $GUROBI_HOME) and run pip like:
+
+```bash
+pip install $GUROBI_HOME
+```
+
+
+## Reproduce Figures from  the manuscript and the supplemental material
+
+Please note that some simulations might be CPU intensive. More detailed information will be updated.
 
 ### Fig 1
 
@@ -254,77 +331,3 @@ source ./figs15_paramscanlag.sh
 ```
 
 				 
-				 
-
-
-
-## Installation
-
-This code requires some external open-source packages.
-
-We use virtual environment, if you don't have it please install like one of:
-
-```bash
-apt-get install python-virtualenv
-yum install python-virtualenv
-pip install virtualenv
-```
-
-### Solvers
-	
-Be sure to have LP solvers (default is glpk/cglpk) installed **before** pip installing cobra (you can always pip uninstall/pip install again)
-
-In Ubuntu distributions this means e.g.:
-
-```bash
-sudo apt-get install glpk-utils
-```
-
-To install Gurobi solver (not needed) please refer to:
-	
-http://www.gurobi.com/documentation/6.5/quickstart_linux/software_installation_guid.html#section:Installation
-	
-Gurobi is installed globally by running
-
-```bash
-sudo python setup.py install
-```
-
-In virtualenv then you need to locate Gurobi path (see below)
-	
-### Generate a virtual environment for python2.7 like:
-
-```bash
-cd yourprojectfolder
-virtualenv -p /usr/bin/python2.7 pubvenv
-```
-
-Then activate virtualenv and install the requirements:
-
-```bash
-source pubvenv/bin/activate
-pip install -r req_pubvenv.txt
-```
-
-The command to leave the virtualenv is:
-
-```bash
-deactivate
-```
-
-
-### MOMA file modifications
-
-The file moma.py from COBRApy has to be slightly modify to return a copy of the model:
-
-```bash
-cp filescobra/moma.py pubvenv/lib/python2.7/site-packages/cobra/flux_analysis/
-```
-
-### Gurobi installation in virtualenv
-
-In virtualenv you need to locate Gurobi path (usually is saved in $GUROBI_HOME) and run pip like:
-
-```bash
-pip install $GUROBI_HOME
-```
