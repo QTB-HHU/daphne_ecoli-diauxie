@@ -21,6 +21,8 @@ The code is made available under the GNU General Public License (see LICENSE) at
 Please refer to the Jupyter notebook for interactive examples to learn how to use the framework for your own analysis. A software
 metapaper is in preparation.
 
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/QTB-HHU/dfba-ode-framework_ecoli-diauxie/master)
+	
 ## Installation
 
 This code requires some external open-source packages.
