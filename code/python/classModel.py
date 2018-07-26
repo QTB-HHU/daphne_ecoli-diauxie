@@ -719,6 +719,10 @@ class DynamicModel(object):
         First call to initialize the reaction rates:
            run FBA, fill constraints, re-run, remove initial entries and update constraints
         '''
+        if self.cbModel is None:
+            self.FBAsolutions.append(self.solveFBA(init=True))
+            self.updateFluxes(self.FBAsolutions[-1])
+            return
         self.cobraReactions = map(lambda x: x.id, self.cbModel.reactions )
         self.FBAsolutions.append(self.solveFBA(init=True))
         #XXXX +self.odefluxes[-1]
