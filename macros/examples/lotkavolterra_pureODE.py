@@ -95,7 +95,7 @@ def options():
     parser.add_option('-d', '--dpar', dest='dpar', help='parameter d', default='0.75')
     parser.add_option('-y', '--yicond', dest='yicond', help='initial conditions', default='[10., 5.]')
     parser.add_option('-t', '--timeunits', dest='timeunits', help='time units', default='hr')
-    parser.add_option('-p', '--pathout', dest='pathout', help='path for outputs', default='/tmp')
+    parser.add_option('-p', '--pathout', dest='pathout', help='path for outputs', default='./')
     opts, args = parser.parse_args()
     if opts.verbose:
         print "verbosity turned on"

@@ -128,13 +128,13 @@ def plotEnjalbert2015_growth2EC(transitions, model, expcond, expcond2, tit):
     ## COLORS http://htmlcolorcodes.com/color-chart/
     ## blues: #2980b9 #3498db  #1abc9c #16a085
     ## yellows: #f4d03f f5b041 eb984e  #dc7633 
-    ax1.plot(x, ybm1, '#2980b9', label=bmn1.replace('_', ' '))
-    ax1.plot(x, ybm2, '#16a085', label=bmn2.replace('_', ' '))
+    ax1.plot(x, ybm1, 'r', label=bmn1.replace('_', ' '))
+    ax1.plot(x, ybm2, 'b', label=bmn2.replace('_', ' '))
     #ax1.set_xlim(0., 1.)
     ll = ax1.legend(loc='center right', prop={'size':10})
     ax1.set_title(tit)
-    ax2.plot(x, ygl1, '#c0392b', label='Glucose')
-    ax2.plot(x, yac1, '#f39c12', label='Acetate')
+    ax2.plot(x, ygl1, 'y', label='Glucose')
+    ax2.plot(x, yac1, 'g', label='Acetate')
     # ax2.plot(x, ygl1, '#3498db', label='Glucose 1')
     # ax2.plot(x, yac1, '#1abc9c', label='Acetate 1')
     # ax2.plot(x, ygl2, '#f5b041', label='Glucose 2')
@@ -160,7 +160,7 @@ def plotEnjalbert2015_growth2EC(transitions, model, expcond, expcond2, tit):
         # ax1.plot(dataBM['x'], dataBM['y']*ODtoGDW*volExt, 'bs', label='Biomass (exp)')
         #ax1.errorbar(dataFIG['Time'], dataFIG['OD 600nm']*ODtoGDW*volExt, yerr=dataFIG['OD SD']*ODtoGDW*volExt, fmt='bs', label='Biomass (exp)')
         dataFIG=pandas.read_csv('../../ecoli/enjalbert2015_data/fig6a_fromEnjalbert2015.csv', sep=',')
-        ax1.plot(dataFIG['Time'], dataFIG['OD 600nm']*ODtoGDW*volExt, 'bs', label='Biomass (exp)')
+        ax1.plot(dataFIG['Time'], dataFIG['OD 600nm']*ODtoGDW*volExt, 'ks', label='Biomass (exp)')
         fignum = '_fig6A'
     elif expcond == "fedbatch_high_Ac":
         # dataBM=pandas.read_csv('../../ecoli/enjalbert2015_data/fig6c_bm.csv', sep=',',header=None, names=['x','y'])
