@@ -1,4 +1,4 @@
-# Modeling framework for dynamic metabolic modeling of ecosystems
+# DAPHNE, a metabolic modeling framework to capture DynAmic Population HeterogeNEity
 
 This modeling framework integrates Ordinary Differential Equation models with
 constraint-based metabolic network models, using various Flux Balance Analysis functionalities 
