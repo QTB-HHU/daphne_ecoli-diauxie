@@ -70,7 +70,8 @@ def main():
     glucose0 = 15.0 #mM
     acetate0 = 0.0 #mM
     fb=0.
-    afb=0.
+    afbG=0.
+    afbA=0.
     mpath = args.model
     if 'xml' in mpath:
         print 'Running dFBA simulation'
@@ -118,17 +119,25 @@ def main():
         expcond = 'fedbatch_low_Ac'
         glucose0 = 15.0
         acetate0 = 0.0
-        afb=1.0
         ac_thr = 4.0
         t_glc = 4.0
+        if args.runsingle:
+            t_glc = 3.8
+            afbG=1.0
+        else:
+            afbA=1.0
     elif args.runfedhighacetate:
         print('Simulating Batch Growth on 15mM Glucose and constant 32mM Acetate as in Enjalbert2015')
         expcond = 'fedbatch_high_Ac'
         glucose0 = 15.0
         acetate0 = 32.0
-        afb=1.0
         ac_thr = 32.0
         t_glc = 4.0
+        if args.runsingle:
+            t_glc = 3.3
+            afbG=1.0
+        else:
+            afbA=1.0
     elif args.runvarmabatch:
         print('Simulating Batch Growth on Glucose as in Varma1994 Fig.7')
         expcond = 'varma_batch'
@@ -199,7 +208,7 @@ def main():
     biomass_ECgl = cme.Biomass([biomass0*pcECgl], {'growth': [(1, 'biomass_ECgl')], 'dilution': [(ch, None)], 'death': [(death_rate, 'biomass_ECgl')],
                                                    'psi_transition': [(-1., 'biomass_ECgl')], 'phi_transition': [(transition_efficiency, 'biomass_ECac')]})
     ex_glucose_ECgl = cme.DMetabolite('glc_D_e', [glucose0], False, {'glucose_exchange': [(1, 'biomass_ECgl')], 'glucose_fed': [(fb, None)] })
-    ex_acetate_ECgl = cme.DMetabolite('ac_e', [acetate0], False, {'acetate_exchange': [(1, 'biomass_ECgl')]})#, 'acetate_fed': [(afb, None)]})
+    ex_acetate_ECgl = cme.DMetabolite('ac_e', [acetate0], False, {'acetate_exchange': [(1, 'biomass_ECgl')], 'acetate_fed': [(afbG, 'biomass_ECgl')]})
 
     
     oxygen_exchange_ECgl = cre.DReaction(rxnnames['EX_o2_e'], cre.FixedBound(vminoxygen, 0), False)
@@ -216,7 +225,7 @@ def main():
     biomass_ECac = cme.Biomass([biomass0*(1-pcECgl)], {'growth': [(1, 'biomass_ECac')], 'dilution': [(ch, None)], 'death': [(death_rate, 'biomass_ECac')],
                                                        'psi_transition': [(transition_efficiency, 'biomass_ECgl')], 'phi_transition': [(-1., 'biomass_ECac')]})
     ex_glucose_ECac = cme.DMetabolite('glc_D_e', [glucose0], False, {'glucose_exchange': [(1, 'biomass_ECac')] })
-    ex_acetate_ECac = cme.DMetabolite('ac_e', [acetate0], False, {'acetate_exchange': [(1, 'biomass_ECac')], 'acetate_fed': [(afb, 'biomass_ECac')]})
+    ex_acetate_ECac = cme.DMetabolite('ac_e', [acetate0], False, {'acetate_exchange': [(1, 'biomass_ECac')], 'acetate_fed': [(afbA, 'biomass_ECac')]})
     
     oxygen_exchange_ECac = cre.DReaction(rxnnames['EX_o2_e'], cre.FixedBound(vminoxygen, 0), False)
     acetate_exchange_ECac = cre.DReaction(rxnnames['EX_ac_e'], cre.MichaelisMenten1(ex_acetate_ECac, 1, vmaxexace, kmuptake, 1, upperBound=ubexace), False)
@@ -278,11 +287,11 @@ def main():
                                                                                 maxVelocity=phi_transition_rate, hillCoeff=hctrans,
                                                                                 mmConstant=phi_transition_KM, linkedReaction=lrxn2, onThr=0., offset=phi0), True, isODE=True)
     #acetate_fed_ECgl = cre.DReaction(None, cre.ConcentrationMaintenanceFunction(ex_acetate_ECgl, ac_thr, t_glc, linkedReactions=[acetate_exchange_ECgl]), True, isODE=True)
-    #acetate_fed_ECgl = cre.DReaction(None, cre.SquareWave(4, 20, 1, t_glc), True, isODE=True)
+    acetate_fed_ECgl = cre.DReaction(None, cre.SquareWave(9.1, 20, 1, t_glc), True, isODE=True)
     
     dyRxn_ECgl = {'glucose_exchange': glucose_exchange_ECgl, 
                   'oxygen_exchange': oxygen_exchange_ECgl,
-                  #'acetate_fed': acetate_fed_ECgl,
+                  'acetate_fed': acetate_fed_ECgl,
                   'acetate_exchange': acetate_exchange_ECgl,
                   'psi_transition': biomass_psi_transition_ECgl,
                   'phi_transition': biomass_phi_transition_ECgl,
@@ -350,7 +359,7 @@ def main():
     print('<<<>>> BM0  \t ECgl \t ECac \t Glc0 \t Ac0 \t death rate')
     print('<<<>>> %.3f \t %.3f \t %.3f \t %.3f \t %.3f \t %.3f ' % (biomass0, pcECgl, (1-pcECgl), glucose0, acetate0, death_rate))
     print('<<<>>> VMGlc \t KMGlc \t VMAc \t KMAc \t XI \t ZETA')
-    print('<<<>>> %.3f \t %.3f \t %.3f \t %.3f \t %.3f \t %.3f ' % (vmaxexglc, kmuptake, vmaxexace, kmuptake, fb, afb))
+    print('<<<>>> %.3f \t %.3f \t %.3f \t %.3f \t %.3f \t %.3f ' % (vmaxexglc, kmuptake, vmaxexace, kmuptake, fb, afbA))
     print('<<<>>> PSI transition %d ' % args.psitransition)
     print('<<<>>> Psi0 \t VMpsi \t KMpsi \t epsilonpsi')
     print('<<<>>> %.3f \t %.3f \t %.3f \t %.3f ' % (psi0, psi_transition_rate, psi_transition_KM, transition_efficiency))
@@ -523,12 +532,12 @@ def plotEnjalbert2015_growth1EC(args, model, expcond, expcond2):
         else:
             tit = tit+', pFBA'
 
-    ax1.plot(x, ybm1, '#2980b9', label=bmn1.replace('_', ' '))
+    ax1.plot(x, ybm1, 'k', label=bmn1.replace('_', ' '))
     #ax1.set_xlim(0., 1.)
     ll = ax1.legend(loc='center right', prop={'size':10})
     ax1.set_title(tit)
-    ax2.plot(x, ygl1, '#c0392b', label='Glucose')
-    ax2.plot(x, yac1,  '#f39c12', label='Acetate')
+    ax2.plot(x, ygl1, '#c0392b', linestyle='--', label='Glucose')
+    ax2.plot(x, yac1,  '#f39c12', linestyle='--', label='Acetate')
 
     fignum = ''
     if expcond == "batch_low_Glc":
@@ -603,14 +612,18 @@ def plotEnjalbert2015_growth2EC(args, model, expcond, expcond2, tit):
 
     ## COLORS http://htmlcolorcodes.com/color-chart/
     ## blues: #2980b9 #3498db  #1abc9c #16a085
-    ## yellows: #f4d03f f5b041 eb984e  #dc7633 
-    ax1.plot(x, ybm1, '#2980b9', label=bmn1.replace('_', ' '))
-    ax1.plot(x, ybm2, '#16a085', label=bmn2.replace('_', ' '))
+    ## yellows: #f4d03f f5b041 eb984e  #dc7633
+    ### Same gl/ac colors
+    ax1.plot(x, ybm1, '#f39c12', label=bmn1.replace('_', ' '))
+    ax1.plot(x, ybm2, '#c0392b', label=bmn2.replace('_', ' '))
+    ### blue bm colors
+    ####ax1.plot(x, ybm1, '#2980b9', label=bmn1.replace('_', ' '))
+    ####ax1.plot(x, ybm2, '#16a085', label=bmn2.replace('_', ' '))
     #ax1.set_xlim(0., 1.)
     ll = ax1.legend(loc='center right', prop={'size':10})
     ax1.set_title(tit)
-    ax2.plot(x, ygl1, '#c0392b', label='Glucose')
-    ax2.plot(x, yac1, '#f39c12', label='Acetate')
+    ax2.plot(x, ygl1, '#c0392b', linestyle='--', label='Glucose')
+    ax2.plot(x, yac1, '#f39c12', linestyle='--', label='Acetate')
     # ax2.plot(x, ygl1, '#3498db', label='Glucose 1')
     # ax2.plot(x, yac1, '#1abc9c', label='Acetate 1')
     # ax2.plot(x, ygl2, '#f5b041', label='Glucose 2')
