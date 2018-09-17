@@ -12,7 +12,7 @@
 #        -M runs MOMA, else pFBA
 ##################################################################################
 
-OUTDIR=../../outputs/revision_chacks_figures/varma1994/
+OUTDIR=../../outputs/revision_checks_figures/varma1994/
 mkdir -p ${OUTDIR}
 source ../../pubvenv/bin/activate
 
@@ -32,9 +32,9 @@ do
     do
 	sta=${a//\./p}
 	ibm=0.0003
-	python ecDiauxie_revision.py -b ${ibm} -n ${maxsteps} -t 10 -x "-${o}" -v "${a}" -p ${OUTDIR} --run --runsingle --runecgl --ratioecgl "1." --runvarmabatch -l varma_o2_${sto}_ac_${sta}
+	#python ecDiauxie_revision.py -b ${ibm} -n ${maxsteps} -t 10 -x "-${o}" -v "${a}" -p ${OUTDIR} --run --runsingle --runecgl --ratioecgl "1." --runvarmabatch -l varma_o2_${sto}_ac_${sta}
 	ibm=0.00024
-	python ecDiauxie_revision.py -b ${ibm} -n ${maxsteps} -t 10 -x "-${o}" -v "${a}" -p ${OUTDIR} --run --runsingle --runecgl --ratioecgl "1." --runvarmafedbatch -l varma_o2_${sto}_ac_${sta}
+	#python ecDiauxie_revision.py -b ${ibm} -n ${maxsteps} -t 10 -x "-${o}" -v "${a}" -p ${OUTDIR} --run --runsingle --runecgl --ratioecgl "1." --runvarmafedbatch -l varma_o2_${sto}_ac_${sta}
 
 ### Produce plot
 	python ecDiauxie_revision.py --runsingle --runvarmabatch  -p ${OUTDIR}  -m ${OUTDIR}/endOfSimulation-ecoli_core-varma_batch-varma_o2_${sto}_ac_${sta}_ECgl.p

@@ -177,7 +177,7 @@ def main():
     ## Uptake Vmax 10 mmol/g/hr (Gosset, 2005)
     ## Uptake Km 10 muM = 0.01 mM (Gosset, 2005)
     vmaxexglc = 10. #mmol/g/hr
-    vmaxexace = 10. #mmol/g/hr
+    vmaxexace = float(args.vminexace) #10. #mmol/g/hr
     kmuptake = 0.01 #mM
     vminoxygen = float(args.vminexoxygen)
     ubexace = float(args.vmaxexace)
@@ -709,6 +709,7 @@ def options():
     parser.add_argument('-r', '--ratioecgl', help='ratio of ECgl/ECac: BMECgl0 = X*biomass0', default='1.')
     parser.add_argument('-s', '--minstep', help='min step size', default='0.0')
     parser.add_argument('-t', '--tmax', help='max time', default='10.5')
+    parser.add_argument('-q', '--vminexace', help='V min EX ace (absolute val)', default='10.')
     parser.add_argument('-v', '--vmaxexace', help='V max EX ace', default='3.')
     parser.add_argument('-x', '--vminexoxygen', help='V min EX O2', default='10.')
     parser.add_argument('-y', '--vmaxpsi', help='V max psi transition', default='0.0')
