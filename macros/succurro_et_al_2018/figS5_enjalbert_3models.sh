@@ -24,19 +24,19 @@ minstep=0.0
 
 ### 15mM Glc condition
 ibm=0.0027
-python ecDiauxie_isme.py -b ${ibm} -n ${steps} -t 10 -x '-11.5' -s ${minstep} -p ${OUTDIR} --run --runsingle --runecgl --ratioecgl "0.95" --runglucose -l pfba_notrans_mono
-python ecDiauxie_isme.py --runsingle --runecgl  -p ${OUTDIR}  -m ${OUTDIR}/endOfSimulation-ecoli_core-batch_low_Glc-pfba_notrans_mono_ECgl.p
+python ecDiauxie_revision.py -b ${ibm} -n ${steps} -t 10 -x '-11.5' -s ${minstep} -p ${OUTDIR} --run --runsingle --runecgl --ratioecgl "0.95" --runglucose -l pfba_notrans_mono
+python ecDiauxie_revision.py --runsingle --runecgl  -p ${OUTDIR}  -m ${OUTDIR}/endOfSimulation-ecoli_core-batch_low_Glc-pfba_notrans_mono_ECgl.p
 
 ### Low Ace
 ibm=0.0038
-python ecDiauxie_isme.py -b ${ibm} -n ${steps} -t 13 -x '-11.5' -s ${minstep} -p ${OUTDIR} --run --runsingle --runecgl --ratioecgl "0.95" --runfedlowacetate -l pfba_notrans_mono
-python ecDiauxie_isme.py --runsingle --runecgl -p ${OUTDIR} -m ${OUTDIR}/endOfSimulation-ecoli_core-fedbatch_low_Ac-pfba_notrans_mono_ECgl.p
+python ecDiauxie_revision.py -b ${ibm} -n ${steps} -t 13 -x '-11.5' -s ${minstep} -p ${OUTDIR} --run --runsingle --runecgl --ratioecgl "0.95" --runfedlowacetate -l pfba_notrans_mono
+python ecDiauxie_revision.py --runsingle --runecgl -p ${OUTDIR} -m ${OUTDIR}/endOfSimulation-ecoli_core-fedbatch_low_Ac-pfba_notrans_mono_ECgl.p
 
 
 ### High Ace
 ibm=0.006
-python ecDiauxie_isme.py -b ${ibm} -n ${steps} -t 11 -x '-11.5' -s ${minstep} -p ${OUTDIR} --run --runsingle --runecgl --ratioecgl "0.75" --runfedhighacetate -l pfba_notrans_mono
-python ecDiauxie_isme.py --runsingle --runecgl -p ${OUTDIR} -m ${OUTDIR}/endOfSimulation-ecoli_core-fedbatch_high_Ac-pfba_notrans_mono_ECgl.p
+python ecDiauxie_revision.py -b ${ibm} -n ${steps} -t 11 -x '-11.5' -s ${minstep} -p ${OUTDIR} --run --runsingle --runecgl --ratioecgl "0.75" --runfedhighacetate -l pfba_notrans_mono
+python ecDiauxie_revision.py --runsingle --runecgl -p ${OUTDIR} -m ${OUTDIR}/endOfSimulation-ecoli_core-fedbatch_high_Ac-pfba_notrans_mono_ECgl.p
 
 
 ## Simulate stoch
@@ -51,19 +51,19 @@ kphi=0.0
 
 ### 15mM Glc condition
 ibm=0.0027
-python ecDiauxie_isme.py -b ${ibm} -n ${steps} -t 10 -x '-11.5' -s ${minstep} -p ${OUTDIR} --run --runconsortium --ratioecgl "0.95" --runglucose -l pfba_wstochtrans_two -e '0.9' --phitransition --psitransition --kmtransphi "${kphi}" --kmtranspsi "${kpsi}" --vmaxpsi "${vpsi}" --vmaxphi "${vphi}" --phioffset "${phio}" --psioffset "${psio}"
-python ecDiauxie_isme.py -p ${OUTDIR} --runconsortium -m ${OUTDIR}/endOfSimulation-ecoli_core-batch_low_Glc-pfba_wstochtrans_two_ECgl_ECac_0p95.p --psitransition --phitransition --ratioecgl "0.95"
+python ecDiauxie_revision.py -b ${ibm} -n ${steps} -t 10 -x '-11.5' -s ${minstep} -p ${OUTDIR} --run --runconsortium --ratioecgl "0.95" --runglucose -l pfba_wstochtrans_two -e '0.9' --phitransition --psitransition --kmtransphi "${kphi}" --kmtranspsi "${kpsi}" --vmaxpsi "${vpsi}" --vmaxphi "${vphi}" --phioffset "${phio}" --psioffset "${psio}"
+python ecDiauxie_revision.py -p ${OUTDIR} --runconsortium -m ${OUTDIR}/endOfSimulation-ecoli_core-batch_low_Glc-pfba_wstochtrans_two_ECgl_ECac_0p95.p --psitransition --phitransition --ratioecgl "0.95"
 
 ### Low Ace
 ibm=0.0038
-python ecDiauxie_isme.py -b ${ibm} -n ${steps} -t 13 -x '-11.5' -s ${minstep} -p ${OUTDIR} --run --runconsortium --ratioecgl "0.95" --runfedlowacetate -l pfba_wstochtrans_two -e '0.9' --phitransition --psitransition --kmtransphi "${kphi}" --kmtranspsi "${kpsi}" --vmaxpsi "${vpsi}" --vmaxphi "${vphi}" --phioffset "${phio}" --psioffset "${psio}"
-python ecDiauxie_isme.py -p ${OUTDIR} --runconsortium -m ${OUTDIR}/endOfSimulation-ecoli_core-fedbatch_low_Ac-pfba_wstochtrans_two_ECgl_ECac_0p95.p --ratioecgl "0.95" --phitransition --psitransition 
+python ecDiauxie_revision.py -b ${ibm} -n ${steps} -t 13 -x '-11.5' -s ${minstep} -p ${OUTDIR} --run --runconsortium --ratioecgl "0.95" --runfedlowacetate -l pfba_wstochtrans_two -e '0.9' --phitransition --psitransition --kmtransphi "${kphi}" --kmtranspsi "${kpsi}" --vmaxpsi "${vpsi}" --vmaxphi "${vphi}" --phioffset "${phio}" --psioffset "${psio}"
+python ecDiauxie_revision.py -p ${OUTDIR} --runconsortium -m ${OUTDIR}/endOfSimulation-ecoli_core-fedbatch_low_Ac-pfba_wstochtrans_two_ECgl_ECac_0p95.p --ratioecgl "0.95" --phitransition --psitransition 
 
 
 ### High Ace
 ibm=0.006
-python ecDiauxie_isme.py -b ${ibm} -n ${steps} -t 11 -x '-11.5' -s ${minstep} -p ${OUTDIR} --run --runconsortium --ratioecgl "0.75" --runfedhighacetate -l pfba_wstochtrans_two -e '0.9' --phitransition --psitransition --kmtransphi "${kphi}" --kmtranspsi "${kpsi}" --vmaxpsi "${vpsi}" --vmaxphi "${vphi}" --phioffset "${phio}" --psioffset "${psio}"
-python ecDiauxie_isme.py -p ${OUTDIR} --runconsortium -m ${OUTDIR}/endOfSimulation-ecoli_core-fedbatch_high_Ac-pfba_wstochtrans_two_ECgl_ECac_0p75.p --phitransition --psitransition --ratioecgl "0.75"
+python ecDiauxie_revision.py -b ${ibm} -n ${steps} -t 11 -x '-11.5' -s ${minstep} -p ${OUTDIR} --run --runconsortium --ratioecgl "0.75" --runfedhighacetate -l pfba_wstochtrans_two -e '0.9' --phitransition --psitransition --kmtransphi "${kphi}" --kmtranspsi "${kpsi}" --vmaxpsi "${vpsi}" --vmaxphi "${vphi}" --phioffset "${phio}" --psioffset "${psio}"
+python ecDiauxie_revision.py -p ${OUTDIR} --runconsortium -m ${OUTDIR}/endOfSimulation-ecoli_core-fedbatch_high_Ac-pfba_wstochtrans_two_ECgl_ECac_0p75.p --phitransition --psitransition --ratioecgl "0.75"
 
 
 
@@ -79,18 +79,18 @@ vphi=0.2
 
 ### 15mM Glc condition
 ibm=0.0027
-python ecDiauxie_isme.py -b ${ibm} -n ${steps} -t 10 -x '-11.5' -s ${minstep} -p ${OUTDIR} --run --runconsortium --ratioecgl "0.95" --runglucose -l pfba_wphipsitrans_two -e '0.9' --phitransition --psitransition --kmtransphi "${kphi}" --kmtranspsi "${kpsi}" --vmaxpsi "${vpsi}" --vmaxphi "${vphi}" --phioffset "${phio}" --psioffset "${psio}"
-python ecDiauxie_isme.py -p ${OUTDIR} --runconsortium -m ${OUTDIR}/endOfSimulation-ecoli_core-batch_low_Glc-pfba_wphipsitrans_two_ECgl_ECac_0p95.p --psitransition --phitransition --ratioecgl "0.95"
+python ecDiauxie_revision.py -b ${ibm} -n ${steps} -t 10 -x '-11.5' -s ${minstep} -p ${OUTDIR} --run --runconsortium --ratioecgl "0.95" --runglucose -l pfba_wphipsitrans_two -e '0.9' --phitransition --psitransition --kmtransphi "${kphi}" --kmtranspsi "${kpsi}" --vmaxpsi "${vpsi}" --vmaxphi "${vphi}" --phioffset "${phio}" --psioffset "${psio}"
+python ecDiauxie_revision.py -p ${OUTDIR} --runconsortium -m ${OUTDIR}/endOfSimulation-ecoli_core-batch_low_Glc-pfba_wphipsitrans_two_ECgl_ECac_0p95.p --psitransition --phitransition --ratioecgl "0.95"
 
 ### Low Ace
 ibm=0.0038
-python ecDiauxie_isme.py -b ${ibm} -n ${steps} -t 13 -x '-11.5' -s ${minstep} -p ${OUTDIR} --run --runconsortium --ratioecgl "0.95" --runfedlowacetate -l pfba_wphipsitrans_two -e '0.9' --phitransition --psitransition --kmtransphi "${kphi}" --kmtranspsi "${kpsi}" --vmaxpsi "${vpsi}" --vmaxphi "${vphi}" --phioffset "${phio}" --psioffset "${psio}"
-python ecDiauxie_isme.py -p ${OUTDIR} --runconsortium -m ${OUTDIR}/endOfSimulation-ecoli_core-fedbatch_low_Ac-pfba_wphipsitrans_two_ECgl_ECac_0p95.p --ratioecgl "0.95" --phitransition --psitransition 
+python ecDiauxie_revision.py -b ${ibm} -n ${steps} -t 13 -x '-11.5' -s ${minstep} -p ${OUTDIR} --run --runconsortium --ratioecgl "0.95" --runfedlowacetate -l pfba_wphipsitrans_two -e '0.9' --phitransition --psitransition --kmtransphi "${kphi}" --kmtranspsi "${kpsi}" --vmaxpsi "${vpsi}" --vmaxphi "${vphi}" --phioffset "${phio}" --psioffset "${psio}"
+python ecDiauxie_revision.py -p ${OUTDIR} --runconsortium -m ${OUTDIR}/endOfSimulation-ecoli_core-fedbatch_low_Ac-pfba_wphipsitrans_two_ECgl_ECac_0p95.p --ratioecgl "0.95" --phitransition --psitransition 
 
 
 ### High Ace
 ibm=0.006
-python ecDiauxie_isme.py -b ${ibm} -n ${steps} -t 11 -x '-11.5' -s ${minstep} -p ${OUTDIR} --run --runconsortium --ratioecgl "0.75" --runfedhighacetate -l pfba_wphipsitrans_two -e '0.9' --phitransition --psitransition --kmtransphi "${kphi}" --kmtranspsi "${kpsi}" --vmaxpsi "${vpsi}" --vmaxphi "${vphi}" --phioffset "${phio}" --psioffset "${psio}"
-python ecDiauxie_isme.py -p ${OUTDIR} --runconsortium -m ${OUTDIR}/endOfSimulation-ecoli_core-fedbatch_high_Ac-pfba_wphipsitrans_two_ECgl_ECac_0p75.p --phitransition --psitransition --ratioecgl "0.75"
+python ecDiauxie_revision.py -b ${ibm} -n ${steps} -t 11 -x '-11.5' -s ${minstep} -p ${OUTDIR} --run --runconsortium --ratioecgl "0.75" --runfedhighacetate -l pfba_wphipsitrans_two -e '0.9' --phitransition --psitransition --kmtransphi "${kphi}" --kmtranspsi "${kpsi}" --vmaxpsi "${vpsi}" --vmaxphi "${vphi}" --phioffset "${phio}" --psioffset "${psio}"
+python ecDiauxie_revision.py -p ${OUTDIR} --runconsortium -m ${OUTDIR}/endOfSimulation-ecoli_core-fedbatch_high_Ac-pfba_wphipsitrans_two_ECgl_ECac_0p75.p --phitransition --psitransition --ratioecgl "0.75"
 
 deactivate
