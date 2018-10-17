@@ -234,7 +234,7 @@ def main():
     growth_ECac = cre.DReaction(bmf, cre.FixedBound(0., 1000.))
 
     #acetate_fed_ECac = cre.DReaction(None, cre.ConcentrationMaintenanceFunction(ex_acetate_ECac, ac_thr, t_glc, linkedReactions=[acetate_exchange_ECac]), True, isODE=True)
-    acetate_fed_ECac = cre.DReaction(None, cre.SquareWave(9.1, 20, 1, t_glc), True, isODE=True)
+    acetate_fed_ECac = cre.DReaction(None, cre.SquareWave(min(9.1, vmaxexace), 20, 1, t_glc), True, isODE=True)
 
 
     #########################
@@ -287,7 +287,7 @@ def main():
                                                                                 maxVelocity=phi_transition_rate, hillCoeff=hctrans,
                                                                                 mmConstant=phi_transition_KM, linkedReaction=lrxn2, onThr=0., offset=phi0), True, isODE=True)
     #acetate_fed_ECgl = cre.DReaction(None, cre.ConcentrationMaintenanceFunction(ex_acetate_ECgl, ac_thr, t_glc, linkedReactions=[acetate_exchange_ECgl]), True, isODE=True)
-    acetate_fed_ECgl = cre.DReaction(None, cre.SquareWave(vmaxexace, 20, 1, t_glc), True, isODE=True)
+    acetate_fed_ECgl = cre.DReaction(None, cre.SquareWave(min(9.1, vmaxexace), 20, 1, t_glc), True, isODE=True)
     
     dyRxn_ECgl = {'glucose_exchange': glucose_exchange_ECgl, 
                   'oxygen_exchange': oxygen_exchange_ECgl,

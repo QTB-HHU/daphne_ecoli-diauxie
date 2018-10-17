@@ -642,7 +642,10 @@ def plotEnjalbert2015_growth2EC(args, model, expcond, expcond2, tit):
         # dataBM=pandas.read_csv('../../ecoli/enjalbert2015_data/fig6c_bm.csv', sep=',',header=None, names=['x','y'])
         # ax1.plot(dataBM['x'], dataBM['y']*ODtoGDW*volExt, 'bs', label='Biomass (exp)')
         dataFIG=pandas.read_csv('../../ecoli/enjalbert2015_data/fig6b_fromEnjalbert2015_4h.csv', sep=',')
-        ax1.plot(dataFIG['Time'], dataFIG['OD 600nm']*ODtoGDW*volExt, 'bs', label='Biomass (exp)')
+        if args.shiftgetime:
+            ax1.plot(dataFIG['Time']+0.8, dataFIG['OD 600nm']*ODtoGDW*volExt, 'bs', label='Biomass (exp)')
+        else:
+            ax1.plot(dataFIG['Time'], dataFIG['OD 600nm']*ODtoGDW*volExt, 'bs', label='Biomass (exp)')
         fignum = '_fig6C'
     #ax.plot(x, ybm1, ':', label='BM1')
     #ax.plot(x, ybm2, ':', label='BM2')
@@ -674,6 +677,7 @@ def options():
     parser.add_argument('-I', '--runvarmabatch', help='batch Glucose conditions as in Varma Fig 7', action='store_true')
     parser.add_argument('-J', '--death', help='add death rate', action='store_true')
     parser.add_argument('-K', '--runvarmafedbatch', help='fed-batch Glucose conditions as in Varma Fig 10', action='store_true')
+    parser.add_argument('-L', '--shiftgetime', help='shift GE time', action='store_true')
     parser.add_argument('-M', '--moma', help='run dFBA with MOMA', action='store_true')
     parser.add_argument('-P', '--phitransition', help='activate phi transition from Ac state to Glc state', action='store_true')
     parser.add_argument('-Q', '--glthreshold', help='Glc concentration threshold for psi transition', action='store_true')
