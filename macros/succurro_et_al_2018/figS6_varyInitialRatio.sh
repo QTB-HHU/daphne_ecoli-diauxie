@@ -12,7 +12,7 @@
 #        --runconsortium --ratioecgl "1." runs two E. coli models with starting biomass ratio for ECgl =  0.999 TOT
 #        -e '0.9' --phitransition --psitransition activates ECgl <-> ECac transitions, with efficiency 0.9
 ##################################################################################
-OUTDIR=../../outputs/vary_initial_ratio/
+OUTDIR=../../outputs/supplementary_figures/vary_initial_ratio/
 mkdir -p ${OUTDIR}
 source ../../pubvenv/bin/activate
 
