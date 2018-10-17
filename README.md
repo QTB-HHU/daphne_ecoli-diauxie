@@ -181,7 +181,7 @@ source ./figS3_enjalbert2015.sh
 #### Fig S5
 
 ```bash
-source ./figs7-s9_odescans.sh
+source ./figS5_enjalbert_3models.sh
 ```
 
 #### Fig S6
@@ -200,19 +200,20 @@ Simulate high acetate condition from Enjalbert et al, 2015, starting with the sa
 source figS7_highacetate.sh
 ```
 
+#### Fig S8
 
 ```bash
-source ./figs10-s12_transitionrates.sh
+source ./figS8a-d_lagtimescans.sh
+source ./figS8e-h_paramscanlag_run.sh
 ```
 
-#### Fig S14
+#### Additional figures
 
 ```bash
-source ./figs14_lagtimescans.sh
+source ./figS5_transitionRatesRsq.sh
 ```
 
-#### Fig S15
 
 ```bash
-source ./figs15_paramscanlag.sh
+source ./extrafig_odescans.sh
 ```
