@@ -360,6 +360,7 @@ def plotLagTimes(args, tarr, tlag, ibc, flab, tlag_err, plotdata=True, convertTo
         flab = flab+'_store'
 
     fig1.savefig('%s/%s%s.png' % (args.pathout, fign, flab))
+    fig1.savefig('../../outputs/pqfigures/%s%s.png' % (fign, flab), format='png', dpi=1500)
 
     return
 
