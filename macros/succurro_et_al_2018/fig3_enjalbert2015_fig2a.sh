@@ -14,7 +14,6 @@
 ##################################################################################
 OUTDIR=../../outputs/fig3_enjalbert2015_fig2a/
 mkdir -p ${OUTDIR}
-source ../../pubvenv/bin/activate
 
 steps=10000
 ibm=0.0027
@@ -37,5 +36,3 @@ python ecDiauxie.py -p ${OUTDIR} --runconsortium -m ${OUTDIR}/endOfSimulation-ec
 python agreement.py -p ${OUTDIR} --runconsortium -m ${OUTDIR}/endOfSimulation-ecoli_core-batch_low_Glc-pfba_notrans_two_ECgl_ECac_0p95.p
 python agreement.py -p ${OUTDIR} --runconsortium -m ${OUTDIR}/endOfSimulation-ecoli_core-batch_low_Glc-pfba_wphipsitrans_two_ECgl_ECac_0p95.p
 
-
-deactivate

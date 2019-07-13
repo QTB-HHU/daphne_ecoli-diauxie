@@ -11,7 +11,7 @@
 ##################################################################################
 OUTDIR=../../outputs/supplementary_figures/lagtime/scans/
 mkdir -p ${OUTDIR}
-source ../../pubvenv/bin/activate
+conda activate daphnePy2
 
 maxsteps=10000
 minstep=0.0
@@ -64,4 +64,4 @@ case $PLOTLAGODE in
 	;;
 esac
 
-deactivate
+

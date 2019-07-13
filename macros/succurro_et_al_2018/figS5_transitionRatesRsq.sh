@@ -14,7 +14,7 @@
 ##################################################################################
 OUTDIR=../../outputs/supplementary_figures/
 mkdir -p ${OUTDIR}
-source ../../pubvenv/bin/activate
+conda activate daphnePy2
 
 maxsteps=10000
 minstep=0.0
@@ -86,4 +86,4 @@ python agreement.py -p ${OUTDIR} --runconsortium -m ${OUTDIR}/endOfSimulation-ec
 python agreement.py -p ${OUTDIR} --runconsortium -m ${OUTDIR}/endOfSimulation-ecoli_core-fedbatch_low_Ac-pfba_wphipsitrans_two_ECgl_ECac_0p95.p
 #python agreement.py -p ${OUTDIR} --runconsortium -m ${OUTDIR}/endOfSimulation-ecoli_core-fedbatch_low_Ac-pfba_wphipsitrans_two_ECgl_ECac_0p75.p
 
-deactivate
+

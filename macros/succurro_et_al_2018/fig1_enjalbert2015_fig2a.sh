@@ -12,9 +12,10 @@
 #        --runsingle --runecgl --ratioecgl "1." runs a single E. coli model
 #        -M runs MOMA, else pFBA
 ##################################################################################
+conda activate daphnePy2
+
 OUTDIR=../../outputs/fig1_enjalbert2015_fig2a/
 mkdir -p ${OUTDIR}
-source ../../pubvenv/bin/activate
 
 maxsteps=10000
 ibm=0.0027
@@ -30,5 +31,3 @@ python ecDiauxie.py --runsingle --runecgl  -p ${OUTDIR}  -m ${OUTDIR}/endOfSimul
 python agreement.py -p ${OUTDIR} -m ${OUTDIR}/endOfSimulation-ecoli_core-batch_low_Glc-pfba_notrans_mono_ECgl.p
 python agreement.py -p ${OUTDIR} -m ${OUTDIR}/endOfSimulation-ecoli_core-batch_low_Glc-moma_notrans_mono_ECgl.p
 
-
-deactivate

@@ -14,7 +14,6 @@
 ##################################################################################
 OUTDIR=../../outputs/fig5_enjalbert2015_fig4/
 mkdir -p ${OUTDIR}
-source ../../pubvenv/bin/activate
 
 maxsteps=10000
 minstep=0.0
@@ -119,4 +118,3 @@ case $PLOTLAGODE in
 	;;
 esac
 
-deactivate

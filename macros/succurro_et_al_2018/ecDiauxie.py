@@ -564,7 +564,7 @@ def plotEnjalbert2015_growth1EC(args, model, expcond, expcond2):
     ll2 = ax2.legend(loc='best', prop={'size':10})
     plt.setp(ax1.get_xticklabels(), visible=False)
     fig.savefig('%s/enjalbert2015-%s-%s%s.png' % (args.pathout, expcond2, n1, fignum))
-    fig.savefig('../../outputs/pqfigures/enjalbert2015-%s-%s%s.png' % (expcond2, n1, fignum), format='png', dpi=1500)
+    #fig.savefig('../../outputs/pqfigures/enjalbert2015-%s-%s%s.png' % (expcond2, n1, fignum), format='png', dpi=1500)
 
     return
 
@@ -656,7 +656,7 @@ def plotEnjalbert2015_growth2EC(args, model, expcond, expcond2, tit):
     ll2 = ax2.legend(loc='best', prop={'size':10})
     plt.setp(ax1.get_xticklabels(), visible=False)
     fig.savefig('%s/enjalbert2015-%s-totBM%s.png' % (args.pathout, expcond2, fignum))
-    fig.savefig('../../outputs/pqfigures/enjalbert2015-%s-totBM%s.png' % (expcond2, fignum), format='png', dpi=1500)
+    #fig.savefig('../../outputs/pqfigures/enjalbert2015-%s-totBM%s.png' % (expcond2, fignum), format='png', dpi=1500)
 
     #f1.set_title('E. Coli core Aerobic '+expcond.capitalize())
     #ll = f1.legend(loc='center left', prop={'size':10})

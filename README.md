@@ -32,17 +32,9 @@ Load the binder environment, when asked to select the kernel choose python 2. Cl
 
 This code requires some external open-source packages.
 
-We use virtual environment, if you don't have it please install like one of:
-
-```bash
-apt-get install python-virtualenv
-yum install python-virtualenv
-pip install virtualenv
-```
-
 ### Solvers
 	
-Be sure to have LP solvers (default is glpk/cglpk) installed **before** pip installing cobra (you can always pip uninstall/pip install again)
+Be sure to have at least one LP solver (default and opensource is glpk/cglpk) installed **before** installing CobraPy (you can always uninstall CobraPy and install again)
 
 In Ubuntu distributions this means e.g.:
 
@@ -50,7 +42,7 @@ In Ubuntu distributions this means e.g.:
 sudo apt-get install glpk-utils
 ```
 
-To install Gurobi solver (not needed) please refer to:
+To install instead a Gurobi solver (not needed) please refer to:
 	
 http://www.gurobi.com/documentation/6.5/quickstart_linux/software_installation_guid.html#section:Installation
 	
@@ -60,7 +52,43 @@ Gurobi is installed globally by running
 sudo python setup.py install
 ```
 
-In virtualenv then you need to locate Gurobi path (see below)
+In virtualenv then you will need to locate Gurobi path.
+
+
+### Installations through conda (RECOMMENDED)
+
+The easiest way to prepare the environment to run DAPHNE is through conda. Please follow the [official instructions to install conda in your OS](https://docs.conda.io/projects/conda/en/latest/user-guide/install/).
+
+Once conda is installed, you can create and setup the new environment as:
+
+```bash
+conda create -n daphnePy2 python=2.7 numpy matplotlib scipy scikit-learn seaborn pip
+conda activate daphnePy2
+conda install -c conda-forge glpk 
+pip install cobra==0.8.2
+```
+
+#### MOMA file modifications
+
+The file moma.py from COBRApy has to be slightly modify to return a copy of the model:
+
+```bash
+cp filescobra/moma.py $YOURANACONDAPATH/envs/daphnePy2/lib/python2.7/site-packages/cobra/flux_analysis/
+```
+
+*You are now ready to run simulations in DAPHNE!*
+
+
+### Installation through virtual environment and pip
+
+If you don't have virtual environment, you can install it with one of the following commands:
+
+```bash
+apt-get install python-virtualenv
+yum install python-virtualenv
+pip install virtualenv
+```
+
 	
 ### Generate a virtual environment for python2.7 like:
 
@@ -83,7 +111,7 @@ deactivate
 ```
 
 
-### MOMA file modifications
+#### MOMA file modifications
 
 The file moma.py from COBRApy has to be slightly modify to return a copy of the model:
 
@@ -91,7 +119,7 @@ The file moma.py from COBRApy has to be slightly modify to return a copy of the 
 cp filescobra/moma.py pubvenv/lib/python2.7/site-packages/cobra/flux_analysis/
 ```
 
-### Gurobi installation in virtualenv
+#### Gurobi installation in virtualenv
 
 In virtualenv you need to locate Gurobi path (usually is saved in $GUROBI_HOME) and run pip like:
 

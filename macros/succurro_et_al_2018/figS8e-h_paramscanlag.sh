@@ -15,7 +15,7 @@ done
 
 OUTDIR=../../outputs/supplementary_figures/lagtime/scans/
 mkdir -p ${OUTDIR}
-source ../../pubvenv/bin/activate
+conda activate daphnePy2
 
 mkdir -p ${OUTDIR}/kpsi10/
 mkdir -p ${OUTDIR}/kpsi30/

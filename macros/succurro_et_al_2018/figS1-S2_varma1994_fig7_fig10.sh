@@ -14,7 +14,7 @@
 
 OUTDIR=../../outputs/supplementary_figures/varma1994/
 mkdir -p ${OUTDIR}
-source ../../pubvenv/bin/activate
+conda activate daphnePy2
 
 maxsteps=10000
 
@@ -54,4 +54,4 @@ python analyseFluxes.py -i ${OUTDIR}endOfSimulation-ecoli_core-varma_fedbatch-pf
 python analyseFluxes.py -i ${OUTDIR}endOfSimulation-ecoli_core-varma_fedbatch-moma_notrans_mono_ECgl.p -p ${OUTDIR} -E
 
 
-deactivate
+

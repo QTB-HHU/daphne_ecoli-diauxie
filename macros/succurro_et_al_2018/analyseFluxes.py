@@ -241,7 +241,7 @@ def makePaperFigureGluExh(rxn, tit, pt):
     ttl2.set_position([.5, 1.3])
     
     plt.savefig('%s/gene_exp_glucose_exhaustion.png' % (pt))
-    plt.savefig('../../outputs/pqfigures/fig2b.png', format='png', dpi=1500)
+    #plt.savefig('../../outputs/pqfigures/fig2b.png', format='png', dpi=1500)
 
     return
 
@@ -284,7 +284,7 @@ def makePaperFigureExpGro(rxn, tit, pt):
     ax2.set_yticklabels(ls2, rotation=0)
 
     plt.savefig('%s/gene_exp_exponential_growth.png' % (pt))
-    plt.savefig('../../outputs/pqfigures/fig2a.png', format='png', dpi=1500)
+    #plt.savefig('../../outputs/pqfigures/fig2a.png', format='png', dpi=1500)
 
     return
 

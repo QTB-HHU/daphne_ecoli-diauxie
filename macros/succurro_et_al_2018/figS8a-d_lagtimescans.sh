@@ -14,7 +14,7 @@
 ##################################################################################
 OUTDIR=../../outputs/supplementary_figures/lagtime/
 mkdir -p ${OUTDIR}
-source ../../pubvenv/bin/activate
+conda activate daphnePy2
 
 OUTDIR=../../outputs/supplementary_figures/lagtime/muSimu/
 mkdir -p ${OUTDIR}
@@ -31,4 +31,4 @@ python lagTimesFigure4.py -D -K -X -U -p ${OUTDIR}
 python lagTimesFigure4.py -D -K -X -U -M -p ${OUTDIR}
 python lagTimesFigure4.py -D -K -X -U -N -p ${OUTDIR}
 
-deactivate
+

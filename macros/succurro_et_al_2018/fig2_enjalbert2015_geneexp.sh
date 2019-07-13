@@ -12,9 +12,10 @@
 #        --runsingle --runecgl --ratioecgl "1." runs a single E. coli model
 #        -M runs MOMA, else pFBA
 ##################################################################################
+conda activate daphnePy2
+
 OUTDIR=../../outputs/fig2_enjalbert2015_geneexp/
 mkdir -p ${OUTDIR}
-source ../../pubvenv/bin/activate
 
 maxsteps=10000
 ibm=0.0027
@@ -36,5 +37,3 @@ mkdir -p ${OUTDIR}
 python analyseFluxes.py -i "${MOMAPFBADIR}/endOfSimulation-ecoli_core-batch_low_Glc-moma_notrans_mono_ECgl.p ${MOMAPFBADIR}/endOfSimulation-ecoli_core-batch_low_Glc-pfba_notrans_mono_ECgl.p" -C -l 'MOMA pFBA' -p ${OUTDIR} -r "${rxns}" -G -k 0.5
 
 
-
-deactivate

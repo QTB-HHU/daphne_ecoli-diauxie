@@ -14,7 +14,7 @@
 ##################################################################################
 OUTDIR=../../outputs/supplementary_figures/vary_initial_ratio/
 mkdir -p ${OUTDIR}
-source ../../pubvenv/bin/activate
+conda activate daphnePy2
 
 c1="95 75 5 25 05"
 array1=( $c1 )
@@ -77,4 +77,4 @@ python plotVaryRatio.py -i '../../outputs/vary_initial_ratio/endOfSimulation-eco
 python plotVaryRatio.py -i '../../outputs/vary_initial_ratio/endOfSimulation-ecoli_core-fedbatch_low_Ac-pfba_wphipsitrans_two_ECgl_ECac_0p05.p ../../outputs/vary_initial_ratio/endOfSimulation-ecoli_core-fedbatch_low_Ac-pfba_wphipsitrans_two_ECgl_ECac_0p25.p ../../outputs/vary_initial_ratio/endOfSimulation-ecoli_core-fedbatch_low_Ac-pfba_wphipsitrans_two_ECgl_ECac_0p5.p ../../outputs/vary_initial_ratio/endOfSimulation-ecoli_core-fedbatch_low_Ac-pfba_wphipsitrans_two_ECgl_ECac_0p75.p ../../outputs/vary_initial_ratio/endOfSimulation-ecoli_core-fedbatch_low_Ac-pfba_wphipsitrans_two_ECgl_ECac_0p95.p' -p '../../outputs/vary_initial_ratio/'
 
 
-deactivate
+
