@@ -42,6 +42,8 @@ In Ubuntu distributions this means e.g.:
 sudo apt-get install glpk-utils
 ```
 
+If however you follow the recommended installation istructions using the conda package management system, glpk can be installed through the channel conda-forge in the environment rather than system-wide.
+
 To install instead a Gurobi solver (not needed) please refer to:
 	
 http://www.gurobi.com/documentation/6.5/quickstart_linux/software_installation_guid.html#section:Installation
